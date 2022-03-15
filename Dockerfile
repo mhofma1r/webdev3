@@ -13,7 +13,9 @@ COPY .conf/90-xdebug.ini "/usr/local/etc/php/conf.d/"
 RUN rm -f /etc/apache2/sites-available/000-default.conf
 COPY .conf/apache2.conf "/etc/apache2/sites-available/000-default.conf"
 COPY .conf/90-xdebug.ini "/usr/local/etc/php/conf.d/"
+COPY .conf/php.ini "/usr/local/etc/php/conf.d/"
 RUN a2enmod rewrite
 RUN mkdir -p "/home/webuser"
 RUN chown -R webuser:webuser "/home/webuser"
+RUN touch "/var/log/xdebug.log"
 CMD ["apache2-foreground"]

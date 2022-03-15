@@ -5,8 +5,8 @@ services:
   web:
     build: .
     volumes:
-      - ../php/laravel:/var/www/html/laravel
-    working_dir: /var/www/html/laravel
+      - ../php:/var/www/html
+    working_dir: /var/www/html
     container_name: webserver
     extra_hosts:
       - "docker.host.internal:host-gateway"
@@ -24,7 +24,7 @@ services:
       - ./mariadb_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: "mewj8mtn"
-      MYSQL_DATABASE: "app_db"
+      MYSQL_DATABASE: "laravel"
       MYSQL_USER: "remote"
       MYSQL_PASSWORD: "782kEW17"
   phpmyadmin:

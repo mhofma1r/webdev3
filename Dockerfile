@@ -1,4 +1,4 @@
-FROM docker-registry:5000/mhofmair/webdev_php
+FROM inf8n8ty/webdev:latest
 #
 ##
 #

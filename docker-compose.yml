@@ -7,7 +7,6 @@ services:
     volumes:
       - ../php:/var/www/html
     working_dir: /var/www/html
-    container_name: webserver
     extra_hosts:
       - "docker.host.internal:host-gateway"
     environment:

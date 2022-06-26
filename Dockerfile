@@ -4,8 +4,8 @@ FROM inf8n8ty/webdev:latest
 #
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install nano zsh libcurl4-openssl-dev libzip-dev libxml2-dev -y
+
 RUN docker-php-ext-install pdo pdo_mysql curl zip bcmath calendar dom
-#
 ## INSTALL Xdebug
 #
 RUN pecl install xdebug

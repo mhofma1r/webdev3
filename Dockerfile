@@ -22,4 +22,6 @@ RUN a2enmod rewrite
 RUN mkdir -p "/home/webuser"
 RUN chown -R webuser:webuser "/home/webuser"
 RUN touch "/var/log/xdebug.log"
+RUN PATH="/var/www/html/node_modules/.bin:$PATH"
+RUN export PATH
 CMD ["apache2-foreground"]

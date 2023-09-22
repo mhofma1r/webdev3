@@ -5,6 +5,7 @@ services:
   web:
     build: .
     volumes:
+      - .composer:/root/.composer
       - ../php:/var/www/html
     working_dir: /var/www/html
     extra_hosts:

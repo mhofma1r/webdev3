@@ -2,7 +2,7 @@
 srcDir="../php/public"
 
 if [ ! -d "$srcDir" ]; then
-  mkdir -p "$srcDir"
+ sudo  mkdir -p "$srcDir"
   echo "Created folder: $srcDir"
 else
   echo "Folder $srcDir exists."

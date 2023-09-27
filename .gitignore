@@ -1,3 +1,5 @@
 .idea
 mariadb_data
 .composer/auth.json
+.composer/cache/
+.log

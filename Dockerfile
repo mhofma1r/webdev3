@@ -11,9 +11,8 @@ RUN rm -f /etc/apache2/sites-available/000-default.conf
 ##      XDEBUG
 #
 RUN pecl install xdebug && docker-php-ext-enable xdebug
-RUN touch "/var/log/xdebug.log"
+RUN touch    "/var/log/apache2/xdebug.log"
 COPY .conf/90-xdebug.ini "/usr/local/etc/php/conf.d/"
-
 COPY .conf/apache2.conf "/etc/apache2/sites-available/000-default.conf"
 COPY .conf/php.ini "/usr/local/etc/php/conf.d/"
 RUN a2enmod rewrite

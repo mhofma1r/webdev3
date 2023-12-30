@@ -23,6 +23,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./mariadb_data:/var/lib/mysql
+    ports:
+      - '33060:3306'
     environment:
       MYSQL_ROOT_PASSWORD: "mewj8mtn"
       MYSQL_DATABASE: "laravel"

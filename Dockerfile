@@ -1,4 +1,4 @@
-FROM inf8n8ty/webdev:latest
+FROM php:8.1-apache
 #
 ##
 #
@@ -15,10 +15,13 @@ RUN touch    "/var/log/apache2/xdebug.log"
 COPY .conf/90-xdebug.ini "/usr/local/etc/php/conf.d/"
 COPY .conf/apache2.conf "/etc/apache2/sites-available/000-default.conf"
 COPY .conf/php.ini "/usr/local/etc/php/conf.d/"
+COPY .conf/envvars "/etc/apache2/"
 RUN a2enmod rewrite
 RUN mkdir -p "/home/webuser"
+RUN groupadd -r webuser && useradd -r -g webuser webuser
 RUN chown -R webuser:webuser "/home/webuser"
 RUN PATH="/var/www/html/node_modules/.bin:$PATH"
+
 RUN export PATH
 
 CMD ["apache2-foreground"]

@@ -1,7 +1,7 @@
-FROM php:8.1-apache
+FROM php:8.3-apache
 # Update and install packages
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y nano zsh libcurl4-openssl-dev libzip-dev libxml2-dev
+RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev
 
 # Install PHP extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -40,3 +40,4 @@ RUN PATH="/var/www/html/node_modules/.bin:$PATH"
 RUN export PATH
 
 CMD ["apache2-foreground"]
+USER 1000:1000

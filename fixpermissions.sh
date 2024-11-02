@@ -1,7 +1,7 @@
 #!/bin/sh
-srcDir="../php/public"
-webroot="../php"
-logroot="./.log"
+srcDir="../web/datasource"
+webroot="../web"
+logroot="./.log*"
 
 if [ ! -d "$srcDir" ]; then
  sudo  mkdir -p "$srcDir"

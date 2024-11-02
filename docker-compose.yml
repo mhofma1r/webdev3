@@ -5,8 +5,8 @@ services:
     build: .
     volumes:
       - .composer:/root/.composer
-      - .log:/var/log
-      - ../php:/var/www/html
+      - .log_web:/var/log
+      - ../web:/var/www/html
     working_dir: /var/www/html
     extra_hosts:
       - host.docker.internal:host-gateway
@@ -14,6 +14,22 @@ services:
       - PHP_INI_DIR=/usr/local/etc/php/conf.d/
     ports:
       - 80:80
+    links:
+      - mariadb
+  src:
+    build: .
+    volumes:
+      - .composer:/root/.composer
+      - .log_src:/var/log
+      - .log_real/log:/var/reallog
+      - ../src:/var/www/html
+    working_dir: /var/www/html
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      - PHP_INI_DIR=/usr/local/etc/php/conf.d/
+    ports:
+      - 8080:80
     links:
       - mariadb
   mariadb:

@@ -4,3 +4,4 @@ mariadb_data
 .composer/cache/
 .log
 .env
+db_seed/db_seed.sql

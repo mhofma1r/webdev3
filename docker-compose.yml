@@ -22,6 +22,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./mariadb_data:/var/lib/mysql
+      - ./db_seed:/tmp/db_seed/
     ports:
       - '33060:3306'
     environment:

@@ -5,3 +5,4 @@ mariadb_data
 .log
 .env
 db_seed/db_seed.sql
+db_seed/1fk_events.sql

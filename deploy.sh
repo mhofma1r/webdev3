@@ -24,6 +24,8 @@ echo "$DEPLOY_PATH"
 # Rsync php application code
 rsync -avz --delete \
     --exclude='.*' \
+    --exclude='node_modules' \
+    --exclude='vendor' \
     --exclude='storage' \
     --exclude='cache' \
     ../php/ \

@@ -42,5 +42,11 @@ services:
     environment:
       PMA_HOST: mariadb
       MYSQL_ROOT_PASSWORD: mewj8mtn
+  deployer:
+    build:
+      context: deployer
+      dockerfile: Dockerfile
+    volumes:
+      - ../php:/var/www/html
 
 

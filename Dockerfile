@@ -1,7 +1,7 @@
 FROM php:8.5-apache
 # Update and install packages
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev
+RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev net-tools
 
 # Install PHP extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/

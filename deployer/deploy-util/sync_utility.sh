@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+echo "sync.util"
 sync_folder_exact() {
     local rel_src="$1"
     local rel_dest="$2"

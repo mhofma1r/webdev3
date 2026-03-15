@@ -1,7 +1,7 @@
-FROM php:8.3-apache
+FROM php:8.5-apache
 # Update and install packages
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev
+RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev net-tools
 
 # Install PHP extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -26,7 +26,7 @@ RUN chown -R webuser:webuser "/home/webuser"
 
 # Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"&& \
-    php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"&& \
+    php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"&& \
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
     php -r "unlink('composer-setup.php');"
 

@@ -2,7 +2,9 @@ volumes:
   mariadb:
 services:
   web:
-    build: .
+    build:
+      context: web
+      dockerfile: Dockerfile
     volumes:
       - .composer:/root/.composer
       - .log:/var/log
@@ -44,9 +46,10 @@ services:
       MYSQL_ROOT_PASSWORD: mewj8mtn
   deployer:
     build:
-      context: deployer
+
       dockerfile: Dockerfile
     volumes:
       - ../php:/var/www/html
+      - ./deployer/.ssh:/root/.ssh
 
 

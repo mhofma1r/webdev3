@@ -1,7 +1,7 @@
 FROM php:8.5-apache
 # Update and install packages
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev
+RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev net-tools
 
 # Install PHP extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -11,10 +11,7 @@ RUN install-php-extensions pdo pdo_mysql curl zip bcmath calendar dom
 # XDEBUG
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN touch "/var/log/apache2/xdebug.log"
-COPY .conf/90-xdebug.ini "/usr/local/etc/php/conf.d/"
-COPY .conf/apache2.conf "/etc/apache2/sites-available/000-default.conf"
-COPY .conf/php.ini "/usr/local/etc/php/conf.d/"
-COPY .conf/envvars "/etc/apache2/"
+
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN a2enmod rewrite
 
@@ -28,8 +25,16 @@ RUN chown -R webuser:webuser "/home/webuser"
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"&& \
     php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"&& \
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-    php -r "unlink('composer-setup.php');"
+    php -r "unlink('composer-setup.php');" \
 
+ #
+ ## copy configs
+ #
+ # Apache2
+ RM "/etc/apache2/sites-available/000-default.conf"
+COPY .conf/apache2.conf "/etc/apache2/sites-available/000-default.conf"
+COPY .conf/envvars "/etc/apache2/"
+COPY .conf/php "/etc/php"
 
 # Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_21.x | bash -

@@ -1,1 +1,0 @@
-source /root/deploy-util/sync_utility.sh

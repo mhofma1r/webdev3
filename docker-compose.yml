@@ -2,7 +2,9 @@ volumes:
   mariadb:
 services:
   web:
-    build: .
+    build:
+      context: web
+      dockerfile: Dockerfile
     volumes:
       - .composer:/root/.composer
       - .log:/var/log
@@ -45,21 +47,8 @@ services:
       MYSQL_ROOT_PASSWORD: mewj8mtn
   deployer:
     build:
-      context: deployer
+
       dockerfile: Dockerfile
     volumes:
       - ../php:/var/www/html
-      - ./deploy.d:/var/www/html/deploy.d
-      - ./.ssh:/root/.ssh/
-  mcp:
-    image: ghcr.io/modelcontextprotocol/inspector:latest
-    environment:
-      HOST: 0.0.0.0
-      CLIENT_PORT: 6274
-      SERVER_PORT: 6277
-    ports:
-      - "127.0.0.1:6274:6274"
-      - "127.0.0.1:6277:6277"
-    depends_on:
-      - web
 

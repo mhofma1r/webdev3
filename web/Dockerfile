@@ -37,7 +37,7 @@ COPY .conf/envvars "/etc/apache2/"
 COPY .conf/php "/etc/php"
 
 # Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_21.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_24.x | bash -
 RUN apt-get install -y nodejs
 
 # Set PATH

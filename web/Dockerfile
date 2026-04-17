@@ -34,7 +34,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"&& 
  RM "/etc/apache2/sites-available/000-default.conf"
 COPY .conf/apache2.conf "/etc/apache2/sites-available/000-default.conf"
 COPY .conf/envvars "/etc/apache2/"
-COPY .conf/php "/etc/php"
+COPY .conf/php/8.3/apache2/conf.d/20-xdebug.ini "/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
 
 # Install Node.js
 RUN curl -sL https://deb.nodesource.com/setup_24.x | bash -

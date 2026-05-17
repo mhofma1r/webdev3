@@ -6,6 +6,7 @@ services:
       context: web
       dockerfile: Dockerfile
     volumes:
+      - ./codex-data:/home/webuser/.codex
       - .composer:/root/.composer
       - .log:/var/log
       - ../php:/var/www/html

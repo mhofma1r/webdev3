@@ -6,6 +6,7 @@ services:
       context: web
       dockerfile: Dockerfile
     volumes:
+      - ./codex-data:/home/webuser/.codex
       - .composer:/root/.composer
       - .log:/var/log
       - ../php:/var/www/html
@@ -16,7 +17,6 @@ services:
       - PHP_INI_DIR=/usr/local/etc/php/conf.d/
     ports:
       - 80:80
-      - '22:22'
     links:
       - mariadb
   mariadb:
@@ -45,10 +45,4 @@ services:
     environment:
       PMA_HOST: mariadb
       MYSQL_ROOT_PASSWORD: mewj8mtn
-  deployer:
-    build:
-
-      dockerfile: Dockerfile
-    volumes:
-      - ../php:/var/www/html
 

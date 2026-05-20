@@ -6,7 +6,7 @@ RUN apt-get install -y nano bash libcurl4-openssl-dev libzip-dev libxml2-dev net
 # Install PHP extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync
-RUN install-php-extensions pdo pdo_mysql curl zip bcmath calendar dom
+RUN install-php-extensions pdo pdo_mysql curl zip bcmath calendar dom curl mbstring xml pdo_sqlite zip intl
 
 # XDEBUG
 RUN pecl install xdebug && docker-php-ext-enable xdebug
@@ -34,12 +34,18 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"&& 
  RM "/etc/apache2/sites-available/000-default.conf"
 COPY .conf/apache2.conf "/etc/apache2/sites-available/000-default.conf"
 COPY .conf/envvars "/etc/apache2/"
-COPY .conf/php "/etc/php"
-
+#
+## php config
+RUN rm "/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
+COPY .conf/php/8.3/mods-available/xdebug.ini "/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini"
+RUN mv "/usr/local/etc/php/php.ini-development" "/usr/local/etc/php/php.ini"
 # Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_21.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_24.x | bash -
 RUN apt-get install -y nodejs
-
+## AI agent
+RUN npm i -g @openai/codex
+# Install day-to-day development tools.
+RUN apt-get install -y git ripgrep curl unzip sqlite3 jq  gnupg
 # Set PATH
 RUN PATH="/var/www/html/node_modules/.bin:$PATH"
 RUN export PATH

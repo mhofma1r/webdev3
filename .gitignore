@@ -10,3 +10,7 @@ db_seed/1fk_events.sql
 .ssh/
 
 codex-data/
+
+codex-project/logs/
+
+codex-project/DEVELOPMENT_NOTES.md

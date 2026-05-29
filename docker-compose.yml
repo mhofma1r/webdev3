@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./codex-data:/home/webuser/.codex
+      - ./codex-project:/home/webuser/.project
+      - ../.project:/var/www/.projectmanagement
       - .composer:/root/.composer
       - .log:/var/log
       - ../php:/var/www/html

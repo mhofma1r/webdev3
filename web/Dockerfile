@@ -45,6 +45,15 @@ RUN apt-get install -y nodejs
 ## AI agent
 RUN npm i -g @openai/codex
 # Install day-to-day development tools.
+COPY agent /usr/local/bin/agent
+RUN chmod +x /usr/local/bin/agent
+# Playwright
+RUN npm install -g playwright
+
+# Browser und Dependencies installieren
+RUN playwright install chromium
+RUN playwright install-deps chromium
+
 RUN apt-get install -y git ripgrep curl unzip sqlite3 jq  gnupg
 # Set PATH
 RUN PATH="/var/www/html/node_modules/.bin:$PATH"

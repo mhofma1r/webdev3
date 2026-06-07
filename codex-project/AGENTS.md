@@ -26,6 +26,174 @@ This project is maintained by Michael.
 - Use Gitmoji commit messages.
 - Ask before introducing new dependencies.
 
+## Coding Style
+
+### General Principles
+
+- Write clean, readable, and maintainable code.
+- Prefer simplicity over cleverness.
+- Keep functions and methods small and focused.
+- Avoid code duplication (DRY).
+- Use meaningful names for variables, functions, classes, and files.
+- Comment **why**, not **what**.
+- Remove dead code before committing.
+
+---
+
+### PHP
+
+#### Standards
+
+- Follow PSR-12.
+- Follow PSR-4 autoloading.
+- Always use:
+
+```php
+declare(strict_types=1);
+```
+
+- Use type hints for parameters and return values.
+- Prefer Dependency Injection over global state or static services.
+- Avoid business logic in views/templates.
+- Use exceptions for exceptional situations.
+
+#### Example
+
+```php
+public function findById(int $id): ?User
+{
+    return $this->repository->find($id);
+}
+```
+
+---
+
+### JavaScript
+
+#### Standards
+
+- Prefer `const` over `let`, and `let` over `var`.
+- Use strict equality (`===` and `!==`).
+- Keep functions focused on a single responsibility.
+- Avoid global variables.
+- Use descriptive names.
+- Prefer modern ES6+ syntax.
+
+#### Example
+
+```javascript
+const user = await api.getUser(id);
+
+if (user === null) {
+    return;
+}
+```
+
+---
+
+### HTML
+
+#### Standards
+
+- Use semantic HTML whenever possible.
+- Keep markup clean and properly indented.
+- Prefer accessibility-friendly elements.
+- Use labels for form inputs.
+- Avoid inline styles.
+
+#### Example
+
+```html
+<main>
+    <article>
+        <h1>Title</h1>
+        <p>Content</p>
+    </article>
+</main>
+```
+
+---
+
+### CSS
+
+#### Standards
+
+- Prefer reusable classes over inline styles.
+- Keep selectors simple.
+- Avoid `!important` whenever possible.
+- Group related styles together.
+- Use consistent spacing and naming conventions.
+
+#### Example
+
+```css
+.card {
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+```
+
+---
+
+### Security
+
+- Never trust user input.
+- Validate and sanitize all incoming data.
+- Escape output appropriately.
+- Use prepared statements for database queries.
+- Protect forms with CSRF tokens.
+- Store secrets in environment variables.
+- Never commit passwords, API keys, or tokens.
+
+---
+
+### Git
+
+#### Commits
+
+- Create small, focused commits.
+- Write meaningful commit messages.
+- Use Gitmoji when appropriate.
+
+Example:
+
+```text
+✨ Add user profile page
+
+- Add profile controller
+- Add profile view
+- Add route registration
+```
+
+---
+
+### Code Quality
+
+Before committing:
+
+- Run tests.
+- Run static analysis.
+- Run code formatting tools.
+- Remove debug code.
+- Review for security issues.
+
+---
+
+### Preferred Architecture
+
+- MVC where appropriate.
+- Separate presentation, business logic, and data access.
+- Keep controllers thin.
+- Place business logic in services.
+- Use dependency injection.
+- Prefer composition over inheritance.
+
+---
+
+### Golden Rule
+
+Write code as if the next person maintaining it is a tired developer reading it at 3 AM during an outage.
+
 # Projectstructure
 
 ## /home/webuser/.project/DEVELOPMENT_PREFERENCES.md:
